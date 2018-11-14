@@ -13,6 +13,7 @@ void loop() {
     if(tf_mini_speed->isGotSpeed) {
         tf_mini_speed->isGotSpeed = false;
         printResult();
+        isRLR(tf_mini_speed->curr_dist, tf_mini_speed->curr_speed);
     }
 }
 
@@ -26,6 +27,23 @@ void printResult() {
     //Serial.print("strength: ");
     //Serial.print(tf_mini_speed->strength);
     Serial.println();
+    
+}
+
+double typicalBreakingDistance(double curr_speed) {
+    double result = 0.039 * curr_speed / 100 * curr_speed * 0.2941;
+
+    return result;
+}
+
+boolean isRLR(int curr_dist, double curr_speed) {
+    double breaking_distance = typicalBreakingDistance(curr_speed);
+    Serial.print("typical breaking distance : ");
+    Serial.println(breaking_distance);
+    if (curr_dist * 0.01 < breaking_distance) {
+        Serial.println("WARNING WARNING WARNING WARNING WARNING");
+        Serial.println("WARNING WARNING WARNING WARNING WARNING");
+    }
 }
 
 void serialEvent() {
