@@ -58,7 +58,7 @@ void loop()
     Serial.print("Distance : ");
     Serial.print(curr_dist);
     Serial.print("\tspeed : ");
-    Serial.print(curr_speed); // Print the distance//
+    Serial.print(curr_speed);
     Serial.println("km/h");
 
     isRLR(curr_dist, curr_speed);
